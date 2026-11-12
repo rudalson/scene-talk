@@ -1,0 +1,61 @@
+{
+  "name": "scenetalk",
+  "productName": "SceneTalk",
+  "version": "0.1.0",
+  "description": "영상으로 배우는 외국어 학습 플레이어",
+  "private": true,
+  "main": "src/main/main.js",
+  "scripts": {
+    "import-folder": "node scripts/import-folder.js",
+    "start": "electron .",
+    "prepare-ffmpeg": "node scripts/prepare-ffmpeg.js",
+    "dist": "npm run prepare-ffmpeg && electron-builder --win nsis portable",
+    "make-icon": "electron scripts/make-icon.js"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "allowScripts": {
+    "electron@33.2.1": true
+  },
+  "build": {
+    "appId": "kr.scenetalk.player",
+    "productName": "SceneTalk",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "!src/main/devshots.js"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/ffmpeg",
+        "to": "ffmpeg"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "SceneTalk-Setup-${version}.exe",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "SceneTalk-Portable-${version}.exe"
+    }
+  }
+}

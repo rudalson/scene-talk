@@ -1,0 +1,15 @@
+# 의존성 / 빌드 결과
+app/node_modules/
+app/dist/
+app/vendor/
+
+# 학습 콘텐츠 (영상·음성 등 저작물, 용량이 큼)
+library/
+*.wmv
+*.wma
+*.mp4
+
+# 기타
+*.log
+.DS_Store
+Thumbs.db
